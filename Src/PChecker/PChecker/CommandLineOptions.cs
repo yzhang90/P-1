@@ -153,17 +153,17 @@ namespace Plang.PChecker
                         // this must be the path to test dll
                         if(job.PathToTestDll != null)
                         {
-                            throw new CommandlineParsingError($"Multiple input dlls, only one allowed. Found: {job.PathToTestDll} and {colonArg}");
+                            throw new CommandlineParsingError($"Multiple input dlls, only one allowed. Found: {job.PathToTestDll} and {arg}");
                         }
                         else
                         {
-                            if(!File.Exists(colonArg))
+                            if(!File.Exists(arg))
                             {
-                                throw new CommandlineParsingError($"Invalid path to dll: {colonArg}");
+                                throw new CommandlineParsingError($"Invalid path to dll: {arg}");
                             }
                             else
                             {
-                                job.PathToTestDll = colonArg;
+                                job.PathToTestDll = arg;
                             }
                         }
                     }
@@ -172,13 +172,13 @@ namespace Plang.PChecker
                 // the test dll should always be passed
                 if(job.PathToTestDll == null)
                 {
-                    throw new CommandlineParsingError("Missing input: path dll to be checked");
+                    throw new CommandlineParsingError("Missing input: please provide the dll to be checked");
                 }
                 return CommandLineParseResult.Success;
             }
             catch (CommandlineParsingError ex)
             {
-                CommandlineOutput.WriteError($"<Error parsing commandline>:\n {ex.Message}");
+                CommandlineOutput.WriteError($"<Error parsing commandline>:\n{ex.Message}");
                 return CommandLineParseResult.Failure;
             }
             catch (Exception other)
@@ -191,13 +191,13 @@ namespace Plang.PChecker
         internal static void PrintUsage()
         {
             CommandlineOutput.WriteInfo("------------------------------------------");
-            CommandlineOutput.WriteInfo("Recommended usage:\n");
-            CommandlineOutput.WriteInfo("For running checker:\n");
-            CommandlineOutput.WriteInfo(">> pmc <pathToDll> -i:<numberofschedules> -tc:<testcase>\n");
-            CommandlineOutput.WriteInfo("For replaying error schedule:\n");
-            CommandlineOutput.WriteInfo(">> pmc <pathToDll> -tc:<testcase> -replay:<pathToSchedule>\n");
+            CommandlineOutput.WriteInfo("Recommended usage:");
+            CommandlineOutput.WriteInfo("For running checker:");
+            CommandlineOutput.WriteInfo(">> pmc <pathToDll> -i:<numberofschedules> -tc:<testcase> [options]");
+            CommandlineOutput.WriteInfo("For replaying error schedule:");
+            CommandlineOutput.WriteInfo(">> pmc <pathToDll> -tc:<testcase> -replay:<pathToSchedule> [options]");
             CommandlineOutput.WriteInfo("------------------------------------------");
-            CommandlineOutput.WriteInfo("For details about all the options see below");
+            CommandlineOutput.WriteInfo("For details about all the [options] see below");
             CommandlineOutput.WriteInfo("------------------------------------------");
             CommandlineOutput.WriteInfo("    -t:[target project name]   -- name of project (as well as the generated file); if not supplied then file1");
             CommandlineOutput.WriteInfo("------------------------------------------");

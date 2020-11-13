@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Plang.PChecker
 {
@@ -19,7 +20,9 @@ namespace Plang.PChecker
                 case CommandLineParseResult.Success:
                     try
                     {
-                        return 0;
+                        var coyoteRun = new CoyoteRunner(job);
+                        return coyoteRun.Run();
+                        
                     }
                     catch (Exception e)
                     {

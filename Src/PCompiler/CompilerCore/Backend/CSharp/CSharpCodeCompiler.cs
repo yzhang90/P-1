@@ -9,12 +9,10 @@ namespace Plang.Compiler.Backend.CSharp
 <Project Sdk=""Microsoft.NET.Sdk"">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <ApplicationIcon />
     <OutputType>Exe</OutputType>
-    <StartupObject />
     <LangVersion>latest</LangVersion>
     <OutputPath>-directory-</OutputPath>
-  </PropertyGroup >
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include=""Microsoft.Coyote"" Version=""1.0.5""/>
     <PackageReference Include=""PCSharpRuntime"" Version=""1.0.0""/>

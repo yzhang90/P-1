@@ -81,12 +81,12 @@ namespace Plang.Compiler
             }
             catch (CommandlineParsingError ex)
             {
-                CommandlineOutput.WriteError($"<Error parsing project file>:\n {ex.Message}");
+                CommandlineOutput.WriteError($"<Error parsing project file>:\n{ex.Message}");
                 return false;
             }
             catch (Exception other)
             {
-                CommandlineOutput.WriteError($"<Internal Error>:\n {other.Message}\n <Please report to the P team (p-devs@amazon.com) or create a issue on GitHub, Thanks!>");
+                CommandlineOutput.WriteError($"<Internal Error>:\n {other.Message}\n<Please report to the P team (p-devs@amazon.com) or create a issue on GitHub, Thanks!>");
                 return false;
             }
         }
@@ -210,12 +210,12 @@ namespace Plang.Compiler
             }
             catch (CommandlineParsingError ex)
             {
-                CommandlineOutput.WriteError($"<Error parsing commandline>:\n {ex.Message}");
+                CommandlineOutput.WriteError($"<Error parsing commandline>:\n{ex.Message}");
                 return false;
             }
             catch (Exception other)
             {
-                CommandlineOutput.WriteError($"<Internal Error>:\n {other.Message}\n <Please report to the P team (p-devs@amazon.com) or create an issue on GitHub, Thanks!>");
+                CommandlineOutput.WriteError($"<Internal Error>:\n {other.Message}\n<Please report to the P team (p-devs@amazon.com) or create an issue on GitHub, Thanks!>");
                 return false;
             }
         }
