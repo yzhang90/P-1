@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Plang.Compiler;
 
 namespace Plang.PChecker
 {
@@ -9,72 +10,62 @@ namespace Plang.PChecker
     /// </summary>
     public class PCheckerJobConfiguration
     {
+        public ICompilerOutput Output;
         /// <summary>
         /// Path to the DLL of the program under test
         /// </summary>
-        public string PathToTestDll { get; }
+        public string PathToTestDll = null;
 
         /// <summary>
         /// Output directory path where the generated output is dumped
         /// </summary>
-        public string OutputDirectoryPath { get; }
+        public string OutputDirectoryPath = GetNextOutputDirectoryName("PCheckerOutput");
 
         /// <summary>
         /// Number of parallel instances of the checker
         /// </summary>
-        public int Parallelism { get; }
+        public int Parallelism = 1;
 
         /// <summary>
         /// Test case to run the PChecker on
         /// </summary>
-        public string TestCase { get; }
+        public string TestCase = "DefaultImpl";
 
         /// <summary>
         /// Maximum number of schedules to be explored
         /// </summary>
-        public int MaxScheduleIterations { get; }
+        public uint MaxScheduleIterations = 10000;
 
         /// <summary>
         /// Max steps or depth per execution explored
         /// </summary>
-        public int MaxStepsPerExecution { get; }
+        public uint MaxStepsPerExecution = 5000;
 
         /// <summary>
         /// Generate an error after the maximum steps
         /// </summary>
-        public int ErrorOutAtMaxSteps { get; }
+        public uint ErrorOutAtMaxSteps = 10000;
 
         /// <summary>
         /// Is verbose ON
         /// </summary>
-        public bool IsVerbose { get; }
+        public bool IsVerbose = false;
 
         /// <summary>
         /// Is test mode or replay mode
         /// </summary>
-        public bool IsReplay { get; }
+        public bool IsReplay = false;
 
         /// <summary>
         /// Error schedule to be replayed
         /// </summary>
-        public string ErrorSchedule { get; }
+        public string ErrorSchedule = null;
 
-        public PCheckerJobConfiguration()
+        public PCheckerJobConfiguration(ICompilerOutput output)
         {
-            // initialize with the default value of each parameter
-            PathToTestDll = "";
-            OutputDirectoryPath = GetNextOutputDirectoryName("PCheckerOutput");
-            Parallelism = Environment.ProcessorCount;
-            TestCase = "DefaultImpl.Execute";
-            MaxScheduleIterations = 10000;
-            MaxStepsPerExecution = 5000;
-            ErrorOutAtMaxSteps = 10000;
-            IsVerbose = false;
-            IsReplay = false;
-            ErrorSchedule = "";
+            Output = output;
         }
-
-        private string GetNextOutputDirectoryName(string v)
+        private static string GetNextOutputDirectoryName(string v)
         {
             string directoryPath = Path.Combine(Directory.GetCurrentDirectory(), v);
             string folderName = Directory.Exists(directoryPath) ? Directory.GetDirectories(directoryPath).Count().ToString() : "0";
