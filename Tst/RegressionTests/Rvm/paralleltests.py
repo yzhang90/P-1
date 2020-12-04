@@ -98,7 +98,6 @@ def runTests(parallelism, test_names, temporary_directory, command_creator):
       if test.isRunning():
         new_running.append(test)
       elif test.failed():
-        print("%s failed" % test.name())
         test.closeAndPrintFailure()
         failed.append(test)
       else:
