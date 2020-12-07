@@ -95,9 +95,9 @@
                 </executions>
                 <configuration>
                     <workingDirectory>${project.basedir}</workingDirectory>
-                    <executable>python</executable>
+                    <executable>bash</executable>
                     <arguments>
-                        <argument>gen_monitor.py</argument>
+                        <argument>logging.sh</argument>
                     </arguments>
                 </configuration>
             </plugin>
